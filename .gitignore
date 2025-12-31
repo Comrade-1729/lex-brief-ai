@@ -1,7 +1,24 @@
-.venv/
+# Python
 __pycache__/
 *.pyc
-.env
+*.pyo
+*.pyd
+
+# Django
 db.sqlite3
 media/
 staticfiles/
+
+# Virtual env
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+
+# Models
+fine_tuned_model/
