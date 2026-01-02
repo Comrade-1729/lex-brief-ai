@@ -7,15 +7,19 @@ from documents.services.risk_analysis.engine import analyze_risks
 from documents.jurisdictions.registry import get_jurisdiction_engine
 from documents.jurisdictions.services.detect_jurisdiction import detect_jurisdiction
 from documents.evaluation.clause_recall import evaluate_clause_recall
+import time
 
 def analyze(
     file_path: str,
     summarizer,
     jurisdiction_code: str | None = None
 ) -> dict:
+    
+    start_total = time.time()
     # 1. Extract + clean
     raw_text = extract_text(file_path)
     clean = clean_text(raw_text)
+    t_extract = time.time()
 
     # 2. Detect document type
     doc_type = detect_document_type(clean)
@@ -31,6 +35,7 @@ def analyze(
     chunks = chunk_text(clean)
     summaries = [summarizer.summarize(chunk) for chunk in chunks]
     final_summary = " ".join(summaries)
+    t_summary = time.time()
 
     result = {
         "summary": final_summary,
@@ -76,5 +81,14 @@ def analyze(
             "Clause extraction and risk analysis are disabled "
             "for unstructured documents."
         )
+    
+    end_total = time.time()
+
+    result["latency"] = {
+        "extract_seconds": round(t_extract - start_total, 3),
+        "summarize_seconds": round(t_summary - t_extract, 3),
+        "analysis_seconds": round(end_total - t_summary, 3),
+        "total_seconds": round(end_total - start_total, 3),
+    }
 
     return result

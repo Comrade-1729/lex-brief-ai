@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from documents.services.analyze_document import analyze
 from documents.models import Document
-from documents.ai.legal_t5_summarizer import LegalT5Summarizer
+from documents.ai.summarizer_impl import DummySummarizer
 
 def upload_view(request):
     if request.method == "POST":
@@ -11,7 +11,7 @@ def upload_view(request):
             file=file
         )
 
-        summarizer = LegalT5Summarizer()
+        summarizer = DummySummarizer()
         result = analyze(doc.file.path, summarizer)
 
         doc.summary = result["summary"]
