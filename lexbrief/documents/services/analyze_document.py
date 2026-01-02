@@ -6,7 +6,7 @@ from documents.services.clause_extraction import extract_clauses
 from documents.services.risk_analysis.engine import analyze_risks
 from documents.jurisdictions.registry import get_jurisdiction_engine
 from documents.jurisdictions.services.detect_jurisdiction import detect_jurisdiction
-
+from documents.evaluation.clause_recall import evaluate_clause_recall
 
 def analyze(
     file_path: str,
@@ -62,6 +62,15 @@ def analyze(
                     "warning": "Jurisdiction analysis failed",
                     "error": str(e),
                 }
+        try:
+            predicted_clause_types = [c.clause_type.value for c in clauses]
+            recall_metrics = evaluate_clause_recall(
+                predicted_clause_types,
+                "documents/evaluation/data/india_employment.gold.json"
+            )
+            result["evaluation"] = recall_metrics
+        except Exception:
+            result["evaluation"] = None
     else:
         result["note"] = (
             "Clause extraction and risk analysis are disabled "

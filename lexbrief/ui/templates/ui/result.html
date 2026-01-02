@@ -60,6 +60,22 @@
 </section>
 {% endif %}
 
+{% if result.evaluation %}
+<section class="bg-green-50 p-4 rounded shadow mb-6">
+  <h3 class="font-semibold mb-2">📊 Evaluation Metrics</h3>
+  <p>
+    <strong>Clause Recall:</strong>
+    {{ result.evaluation.recall }}
+  </p>
+
+  {% if result.evaluation.missing %}
+    <p class="text-sm text-red-600 mt-1">
+      Missing clauses:
+      {{ result.evaluation.missing|join:", " }}
+    </p>
+  {% endif %}
+</section>
+{% endif %}
 
 <a href="/" class="text-blue-600">← Upload another</a>
 

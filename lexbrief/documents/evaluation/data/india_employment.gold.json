@@ -1,0 +1,14 @@
+{
+  "document_type": "STRUCTURED",
+  "jurisdiction": "IN",
+  "clauses": [
+    "Confidentiality",
+    "Termination",
+    "Non-Compete",
+    "Payment"
+  ],
+  "high_risk_clauses": [
+    "Non-Compete",
+    "Termination"
+  ]
+}
