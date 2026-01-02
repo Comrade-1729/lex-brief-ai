@@ -13,8 +13,14 @@
   <h3 class="font-semibold mb-2">Clauses</h3>
   <ul class="list-disc ml-6">
     {% for c in result.clauses %}
-      <li>{{ c.type }} ({{ c.confidence }})</li>
+      <li class="mb-1">
+        <strong>{{ c.clause_type }}</strong>
+        <span class="text-sm text-gray-500">
+          (confidence: {{ c.confidence }})
+        </span>
+      </li>
     {% endfor %}
+
   </ul>
 </section>
 {% endif %}
@@ -22,22 +28,38 @@
 {% if result.risks %}
 <section class="bg-white p-4 rounded shadow mb-6">
   <h3 class="font-semibold mb-2">Risks</h3>
+
   {% for r in result.risks %}
     <div class="border p-3 mb-2 rounded">
-      <strong>{{ r.risk_type }}</strong>
-      <span class="ml-2 text-sm text-red-600">
-        {{ r.severity }}
-      </span>
-      <p>{{ r.reason }}</p>
-      {% if r.jurisdiction_note %}
-        <p class="text-sm text-gray-600 mt-1">
-          {{ r.jurisdiction_note }}
-        </p>
-      {% endif %}
+      <div class="flex items-center gap-2">
+        <strong>{{ r.clause_type }}</strong>
+        {% if r.level == "High" %}
+          <span class="text-red-600 font-semibold">🔴 High Risk</span>
+        {% elif r.level == "Medium" %}
+          <span class="text-yellow-600 font-semibold">🟡 Medium Risk</span>
+        {% else %}
+          <span class="text-green-600 font-semibold">🟢 Low Risk</span>
+        {% endif %}
+      </div>
+      <p class="mt-1">{{ r.explanation }}</p>
     </div>
   {% endfor %}
 </section>
 {% endif %}
+
+{% if result.jurisdiction_notes %}
+<section class="bg-blue-50 p-4 rounded shadow mb-6">
+  <h3 class="font-semibold mb-2">
+    🌏 Jurisdiction Insights ({{ result.jurisdiction }})
+  </h3>
+  <ul class="list-disc ml-6">
+    {% for note in result.jurisdiction_notes %}
+      <li>{{ note }}</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
 
 <a href="/" class="text-blue-600">← Upload another</a>
 
