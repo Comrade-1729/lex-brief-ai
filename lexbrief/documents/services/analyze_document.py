@@ -1,0 +1,71 @@
+from documents.services.document_type import detect_document_type, DocumentType
+from documents.pipelines.extract_text import extract_text
+from documents.pipelines.preprocess import clean_text
+from documents.pipelines.chunking import chunk_text
+from documents.services.clause_extraction import extract_clauses
+from documents.services.risk_analysis.engine import analyze_risks
+from documents.jurisdictions.registry import get_jurisdiction_engine
+from documents.jurisdictions.services.detect_jurisdiction import detect_jurisdiction
+
+
+def analyze(
+    file_path: str,
+    summarizer,
+    jurisdiction_code: str | None = None
+) -> dict:
+    # 1. Extract + clean
+    raw_text = extract_text(file_path)
+    clean = clean_text(raw_text)
+
+    # 2. Detect document type
+    doc_type = detect_document_type(clean)
+
+    # 3. Resolve jurisdiction
+    if jurisdiction_code:
+        jurisdiction = jurisdiction_code
+    else:
+        detected = detect_jurisdiction(clean)
+        jurisdiction = detected.value if detected else "IN"
+
+    # 4. Summarization (always allowed)
+    chunks = chunk_text(clean)
+    summaries = [summarizer.summarize(chunk) for chunk in chunks]
+    final_summary = " ".join(summaries)
+
+    result = {
+        "summary": final_summary,
+        "document_type": doc_type.value,
+        "jurisdiction": jurisdiction,
+        "clauses": [],
+        "risks": [],
+        "jurisdiction_notes": None,
+    }
+
+    # 5. Clause + Risk analysis (structured only)
+    if doc_type == DocumentType.STRUCTURED:
+        clauses = extract_clauses(clean)
+        risks = analyze_risks(clauses)
+
+        result["clauses"] = [c.to_dict() for c in clauses]
+        result["risks"] = [r.to_dict() for r in risks]
+
+        jurisdiction_engine = get_jurisdiction_engine(jurisdiction)
+        if jurisdiction_engine:
+            try:
+                result["jurisdiction_notes"] = jurisdiction_engine.analyze(
+                    text=clean,
+                    clauses=clauses,
+                    risks=risks,
+                )
+            except Exception as e:
+                result["jurisdiction_notes"] = {
+                    "warning": "Jurisdiction analysis failed",
+                    "error": str(e),
+                }
+    else:
+        result["note"] = (
+            "Clause extraction and risk analysis are disabled "
+            "for unstructured documents."
+        )
+
+    return result

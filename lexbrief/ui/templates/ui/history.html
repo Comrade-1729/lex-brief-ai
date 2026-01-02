@@ -1,0 +1,17 @@
+{% extends "ui/base.html" %}
+{% block content %}
+
+<h2 class="text-xl font-semibold mb-4">History</h2>
+
+<ul>
+{% for d in documents %}
+  <li class="mb-2">
+    <strong>{{ d.title }}</strong>
+    <span class="text-sm text-gray-500">
+      {{ d.created_at }}
+    </span>
+  </li>
+{% endfor %}
+</ul>
+
+{% endblock %}
