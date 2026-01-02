@@ -27,7 +27,7 @@ class LegalT5Summarizer(Summarizer):
             max_length=1024
         ).to(self.device)
 
-        with torch.no_grad():
+        with torch.inference_mode():
             summary_ids = self.model.generate(
                 **inputs,
                 max_length=250,

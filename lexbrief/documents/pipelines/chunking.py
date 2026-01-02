@@ -1,4 +1,6 @@
-def chunk_text(text: str, max_words=400):
+from documents.config.limits import CHUNK_WORDS
+
+def chunk_text(text: str, max_words=CHUNK_WORDS) -> list[str]:
     words = text.split()
     chunks = []
 

@@ -4,3 +4,5 @@ class RiskScorer(ABC):
     @abstractmethod
     def score(self, clauses: list) -> dict:
         pass
+
+# Reserved for future ML-based risk scoring

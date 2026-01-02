@@ -1,7 +1,10 @@
+from django.conf import settings
 from django.shortcuts import render
 from documents.services.analyze_document import analyze
 from documents.models import Document
-from documents.ai.summarizer_impl import DummySummarizer
+from documents.ai.dummy_summarizer import DummySummarizer
+from documents.ai.legal_t5_summarizer import LegalT5Summarizer
+import os
 
 def upload_view(request):
     if request.method == "POST":
@@ -11,7 +14,11 @@ def upload_view(request):
             file=file
         )
 
-        summarizer = DummySummarizer()
+        if settings.USE_DUMMY_SUMMARIZER:
+            summarizer = DummySummarizer()
+        else:
+            summarizer = LegalT5Summarizer()
+        
         result = analyze(doc.file.path, summarizer)
 
         doc.summary = result["summary"]

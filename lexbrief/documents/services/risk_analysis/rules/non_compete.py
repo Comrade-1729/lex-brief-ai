@@ -9,7 +9,7 @@ def check_non_compete(clauses):
         if clause.clause_type != ClauseType.NON_COMPETE:
             continue
 
-        text = clause.content.lower()
+        text = clause.text.lower()
         score = 0.3
         reasons = ["Non-compete clause detected."]
 

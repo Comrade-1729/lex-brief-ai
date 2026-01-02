@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+USE_DUMMY_SUMMARIZER = True
 
 # Application definition
 
