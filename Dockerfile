@@ -31,7 +31,8 @@ RUN pip install --no-cache-dir --upgrade pip \
 # Copy project source
 COPY . .
 
-# Collect static files (safe no-op in dev)
+# Prepare Django & Collect static files (safe no-op in dev)
+RUN python lexbrief/manage.py migrate --noinput
 RUN python lexbrief/manage.py collectstatic --noinput || true
 
 # -------------------------

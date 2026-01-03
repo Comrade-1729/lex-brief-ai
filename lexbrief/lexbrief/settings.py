@@ -150,3 +150,8 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # --------------------------------------------------
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+os.makedirs(MEDIA_ROOT, exist_ok=True)
+
+FILE_UPLOAD_PERMISSIONS = 0o644
+FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o755
