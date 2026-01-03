@@ -9,6 +9,10 @@ class RiskLevel(Enum):
     MEDIUM = "Medium"
     HIGH = "High"
 
+class RiskType(Enum):
+    MISSING_CLAUSE = "Missing Clause"
+    NON_COMPETE = "Non Compete"
+    TERMINATION = "Termination"
 
 @dataclass
 class Risk:
