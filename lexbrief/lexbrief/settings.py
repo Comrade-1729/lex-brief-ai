@@ -21,7 +21,7 @@ SECRET_KEY = os.environ.get(
     "dev-insecure-secret-key-change-in-production"
 )
 
-DEBUG = os.environ.get("DEBUG", "0") == "1"
+DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = [
     "lex-brief-ai.onrender.com",
@@ -66,6 +66,8 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+USE_X_FORWARDED_HOST = True
 
 # --------------------------------------------------
 # URLs / WSGI
