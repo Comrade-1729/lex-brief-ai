@@ -43,5 +43,5 @@ ENV DJANGO_SETTINGS_MODULE=lexbrief.settings
 
 CMD gunicorn lexbrief.wsgi:application \
     --bind 0.0.0.0:${PORT:-10000} \
-    --workers 2 \
+    --workers 1 \
     --timeout 120

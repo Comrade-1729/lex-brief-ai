@@ -1,6 +1,4 @@
 from django.conf import settings
-from documents.ai.dummy_summarizer import DummySummarizer
-from documents.ai.legal_t5_summarizer import LegalT5Summarizer
 
 _summarizer = None
 
@@ -11,8 +9,10 @@ def get_summarizer():
         return _summarizer
 
     if settings.USE_DUMMY_SUMMARIZER:
+        from documents.ai.dummy_summarizer import DummySummarizer
         _summarizer = DummySummarizer()
     else:
+        from documents.ai.legal_t5_summarizer import LegalT5Summarizer
         _summarizer = LegalT5Summarizer()
 
     return _summarizer

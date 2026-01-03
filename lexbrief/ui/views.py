@@ -2,8 +2,6 @@ from django.conf import settings
 from django.shortcuts import render
 from documents.services.analyze_document import analyze
 from documents.models import Document
-from documents.ai.dummy_summarizer import DummySummarizer
-from documents.ai.legal_t5_summarizer import LegalT5Summarizer
 from documents.ai.summarizer_factory import get_summarizer
 import os
 
@@ -16,6 +14,7 @@ def upload_view(request):
         )
 
         summarizer = get_summarizer()
+        
         result = analyze(doc.file.path, summarizer)
 
         doc.summary = result["summary"]
