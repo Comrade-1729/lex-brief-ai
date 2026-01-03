@@ -37,7 +37,7 @@ RUN python lexbrief/manage.py collectstatic --noinput || true
 # -------------------------
 # Start server (Render-compatible)
 # -------------------------
-CMD gunicorn lexbrief.lexbrief.wsgi:application \
+CMD gunicorn lexbrief.wsgi:application \
     --bind 0.0.0.0:${PORT:-10000} \
     --workers 2 \
     --timeout 120
