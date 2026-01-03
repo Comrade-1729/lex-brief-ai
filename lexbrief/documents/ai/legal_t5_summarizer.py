@@ -11,10 +11,14 @@ class LegalT5Summarizer(Summarizer):
     - Length controlled
     """
 
-    def __init__(self, model_name="nsi319/legal_t5_base"):
+    def __init__(self, model_name="nsi319/legal-t5-base"):
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
 
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+        self.tokenizer = AutoTokenizer.from_pretrained(
+            model_name,
+            use_fast=True,
+            local_files_only=False
+        )
         self.model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
         self.model.to(self.device)
         self.model.eval()

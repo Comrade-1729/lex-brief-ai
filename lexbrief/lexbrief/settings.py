@@ -34,7 +34,7 @@ CSRF_TRUSTED_ORIGINS = [
     "https://lex-brief-ai.onrender.com",
 ]
 
-USE_DUMMY_SUMMARIZER = os.environ.get("USE_DUMMY_SUMMARIZER", "0") == "1"
+USE_DUMMY_SUMMARIZER = os.environ.get("USE_DUMMY_SUMMARIZER", "1") == "1"
 
 
 # --------------------------------------------------

@@ -4,6 +4,7 @@ from documents.services.analyze_document import analyze
 from documents.models import Document
 from documents.ai.dummy_summarizer import DummySummarizer
 from documents.ai.legal_t5_summarizer import LegalT5Summarizer
+from documents.ai.summarizer_factory import get_summarizer
 import os
 
 def upload_view(request):
@@ -14,11 +15,7 @@ def upload_view(request):
             file=file
         )
 
-        if settings.USE_DUMMY_SUMMARIZER:
-            summarizer = DummySummarizer()
-        else:
-            summarizer = LegalT5Summarizer()
-        
+        summarizer = get_summarizer()
         result = analyze(doc.file.path, summarizer)
 
         doc.summary = result["summary"]
