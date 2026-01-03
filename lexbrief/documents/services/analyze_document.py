@@ -7,6 +7,7 @@ from documents.services.risk_analysis.engine import analyze_risks
 from documents.jurisdictions.registry import get_jurisdiction_engine
 from documents.jurisdictions.services.detect_jurisdiction import detect_jurisdiction
 from documents.evaluation.clause_recall import evaluate_clause_recall
+from documents.config.limits import MAX_DOCUMENT_WORDS
 import time
 
 def analyze(
@@ -15,6 +16,12 @@ def analyze(
     jurisdiction_code: str | None = None
 ) -> dict:
     
+    if len(clean.split()) > MAX_DOCUMENT_WORDS:
+        return {
+            "error": "Document too large for analysis",
+            "max_words": MAX_DOCUMENT_WORDS,
+        }
+
     start_total = time.time()
     # 1. Extract + clean
     raw_text = extract_text(file_path)
