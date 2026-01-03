@@ -1,4 +1,4 @@
-from documents.services.risk_analysis.models import RiskLevel, RiskType, Risk
+from documents.services.risk_analysis.models import RiskLevel, Risk
 
 EXPECTED_CLAUSES = {
     "Confidentiality",

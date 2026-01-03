@@ -3,16 +3,10 @@ from typing import Optional
 from enum import Enum
 from documents.domain.clauses import Clause
 
-
 class RiskLevel(Enum):
     LOW = "Low"
     MEDIUM = "Medium"
     HIGH = "High"
-
-class RiskType(Enum):
-    MISSING_CLAUSE = "Missing Clause"
-    NON_COMPETE = "Non Compete"
-    TERMINATION = "Termination"
 
 @dataclass
 class Risk:

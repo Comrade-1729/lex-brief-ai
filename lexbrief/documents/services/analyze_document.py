@@ -43,7 +43,7 @@ def analyze(
         "jurisdiction": jurisdiction,
         "clauses": [],
         "risks": [],
-        "jurisdiction_notes": None,
+        "jurisdiction_notes": [],
     }
 
     # 5. Clause + Risk analysis (structured only)
@@ -63,10 +63,10 @@ def analyze(
                     risks=risks,
                 )
             except Exception as e:
-                result["jurisdiction_notes"] = {
-                    "warning": "Jurisdiction analysis failed",
-                    "error": str(e),
-                }
+                result["jurisdiction_notes"] = [
+                    "Jurisdiction analysis failed",
+                    str(e),
+                ]
         try:
             predicted_clause_types = [c.clause_type.value for c in clauses]
             recall_metrics = evaluate_clause_recall(

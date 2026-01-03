@@ -13,6 +13,7 @@ CLAUSE_KEYWORDS = {
     ClauseType.LIABILITY: ["liability", "liable"],
     ClauseType.INDEMNITY: ["indemnity", "indemnify"],
     ClauseType.FORCE_MAJEURE: ["force majeure"],
+    ClauseType.NON_COMPETE: ["non-compete", "non compete", "restriction"],
 }
 
 def classify_clause(title: str, content: str):
