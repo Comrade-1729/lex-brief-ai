@@ -103,3 +103,20 @@ This project is designed as a **top-tier portfolio artifact** rather than a demo
 These limitations are intentional to preserve safety and explainability.
 
 ---
+
+## ⚠️ Deployment Note (IMPORTANT!)
+
+LexBrief AI supports transformer-based summarization using LegalT5.
+However, due to memory constraints on lightweight cloud platforms
+(e.g. Render free tier), transformer inference is disabled in production.
+
+Production deployments use a deterministic dummy summarizer by default.
+The LegalT5 pipeline can be enabled on GPU-backed or high-memory instances
+by setting:
+
+USE_DUMMY_SUMMARIZER=0
+
+This design demonstrates production-safe ML deployment practices,
+feature flagging, and infrastructure-aware system design.
+
+---
