@@ -32,6 +32,7 @@ ALLOWED_HOSTS = [
 
 CSRF_TRUSTED_ORIGINS = [
     "https://lex-brief-ai.onrender.com",
+    "http://lex-brief-ai.onrender.com",
 ]
 
 USE_DUMMY_SUMMARIZER = os.environ.get("USE_DUMMY_SUMMARIZER", "1") == "1"
@@ -52,6 +53,8 @@ INSTALLED_APPS = [
     "ui",
 ]
 
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
 # --------------------------------------------------
 # Middleware
