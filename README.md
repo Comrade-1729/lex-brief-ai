@@ -88,7 +88,7 @@ All latency metrics are surfaced directly in the UI for transparency.
 ## 📦 Tech Stack
 
 * **Backend:** Django (Python)
-* **AI / NLP:** LegalT5, heuristic clause classifiers
+* **AI / NLP:** PyTorch-based LegalT5, heuristic clause classifiers
 * **Parsing:** pdfminer.six, python-docx
 * **Frontend:** HTML + TailwindCSS
 * **Database:** SQLite (PostgreSQL-ready)
