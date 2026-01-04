@@ -1,8 +1,6 @@
----
-
 # ⚖️ LexBrief AI
 
-**Production-Grade Legal Document Intelligence System**
+**Production-Grade Legal Document Intelligence System**.
 
 LexBrief AI transforms long, unreadable legal documents into **actionable, explainable legal insights**.
 
@@ -28,7 +26,6 @@ This project is intentionally built as a **portfolio-grade system**, not a demo 
 
 ## 🏗 High-Level Architecture
 
-```
 User Upload
     ↓
 Text Extraction (PDF / DOCX / TXT)
@@ -44,7 +41,6 @@ Risk Analysis (Explainable Rules)
 Jurisdiction Intelligence
     ↓
 UI Output + Metrics
-```
 
 ---
 
