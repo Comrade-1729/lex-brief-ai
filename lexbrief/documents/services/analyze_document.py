@@ -15,30 +15,37 @@ def analyze(
     summarizer,
     jurisdiction_code: str | None = None
 ) -> dict:
-    
+
+    start_total = time.time()
+    # 1. Extract + clean
+    try:
+        raw_text = extract_text(file_path)
+    except RuntimeError as e:
+        return {
+            "error": "Failed to extract text from document",
+            "reason": str(e),
+        }
+    clean = clean_text(raw_text)
+    t_extract = time.time()
+
+    # 2. Check document size
     if len(clean.split()) > MAX_DOCUMENT_WORDS:
         return {
             "error": "Document too large for analysis",
             "max_words": MAX_DOCUMENT_WORDS,
         }
 
-    start_total = time.time()
-    # 1. Extract + clean
-    raw_text = extract_text(file_path)
-    clean = clean_text(raw_text)
-    t_extract = time.time()
-
-    # 2. Detect document type
+    # 3. Detect document type
     doc_type = detect_document_type(clean)
 
-    # 3. Resolve jurisdiction
+    # 4. Resolve jurisdiction
     if jurisdiction_code:
         jurisdiction = jurisdiction_code
     else:
         detected = detect_jurisdiction(clean)
         jurisdiction = detected.value if detected else "IN"
 
-    # 4. Summarization (always allowed)
+    # 5. Summarization (always allowed)
     chunks = chunk_text(clean)
     summaries = [summarizer.summarize(chunk) for chunk in chunks]
     final_summary = " ".join(summaries)
@@ -53,7 +60,7 @@ def analyze(
         "jurisdiction_notes": [],
     }
 
-    # 5. Clause + Risk analysis (structured only)
+    # 6. Clause + Risk analysis (structured only)
     if doc_type == DocumentType.STRUCTURED:
         clauses = extract_clauses(clean)
         risks = analyze_risks(clauses)
@@ -76,9 +83,16 @@ def analyze(
                 ]
         try:
             predicted_clause_types = [c.clause_type.value for c in clauses]
+            gold_path = os.path.join(
+                settings.BASE_DIR,
+                "documents",
+                "evaluation",
+                "data",
+                "india_employment.gold.json"
+            )   
             recall_metrics = evaluate_clause_recall(
                 predicted_clause_types,
-                "documents/evaluation/data/india_employment.gold.json"
+                gold_path
             )
             result["evaluation"] = recall_metrics
         except Exception:

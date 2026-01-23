@@ -1,10 +1,9 @@
 import re
 
-
 SECTION_PATTERN = re.compile(
-    r"\n\s*(\d+[\.\)]?\s+[A-Z][A-Za-z\s\-]{3,})\n"
+    r"^\s*(\d+[\.\)]?\s+[A-Za-z][A-Za-z\s\-]{2,})$",
+    re.MULTILINE
 )
-
 
 def split_sections(text: str):
     matches = list(SECTION_PATTERN.finditer(text))

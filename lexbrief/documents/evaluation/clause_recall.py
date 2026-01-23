@@ -1,8 +1,14 @@
 import json
 
 def evaluate_clause_recall(predicted_clauses, gold_path):
-    with open(gold_path, "r") as f:
-        gold = json.load(f)
+    try:
+        with open(gold_path, "r") as f:
+            gold = json.load(f)
+    except FileNotFoundError:
+        return {
+            "recall": None,
+            "error": "Gold evaluation file not found"
+        }
 
     gold_clauses = set(gold["clauses"])
     predicted = set(predicted_clauses)
