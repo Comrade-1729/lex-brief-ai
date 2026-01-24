@@ -181,3 +181,24 @@ LexBrief AI demonstrates:
 This repository is designed to be **discussed in interviews**, not just run.
 
 ---
+
+## 📄 Research & Publication
+
+This system is accompanied by a technical whitepaper describing
+its safety-first architecture, evaluation philosophy, and
+deployment constraints.
+
+* **LexBrief AI: A Safety-First, Explainable Legal Document Intelligence System**
+* Status: Preprint (arXiv submission in progress)
+* PDF: `paper/lexbrief_ai.pdf`
+
+---
+
+## 📚 Citation
+
+If you reference this system, please cite:
+
+LexBrief AI: A Safety-First, Explainable Legal Document Intelligence System  
+Ishaan Shanker Srivastava, January 2026
+
+---
