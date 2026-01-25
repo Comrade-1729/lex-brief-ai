@@ -1,13 +1,26 @@
+Perfect. Your README is already strong; we’ll **tighten language, remove redundancy, and make the demo disclaimer interview-safe** without bloating it.
+
+Below is a **finalized README (polished, minimal edits)** followed by **clean commit messages**.
+
+---
+
 # ⚖️ LexBrief AI
 
-**Production-Grade Legal Document Intelligence System**.
+**Production-Aware Legal Document Intelligence System**
 
 LexBrief AI transforms long, unreadable legal documents into **actionable, explainable legal insights**.
 
 Unlike generic summarizers, it is designed as a **real-world, production-aware system** that combines NLP, domain logic, and infrastructure constraints to safely analyze legal text.
 
-> ⚠️ LexBrief AI provides **informational insights only** and does **not** offer legal advice.
-> See [DISCLAIMER.md](DISCLAIMER.md) for legal and usage limitations.
+> ⚠️ **Informational Use Only**
+> LexBrief AI does **not** provide legal advice or legal opinions.
+> See [DISCLAIMER.md](DISCLAIMER.md) for full legal and usage limitations.
+>
+> ⚠️ **Demo Environment Notice**
+> This public deployment runs in a constrained environment.
+> Infrastructure-safe defaults are enabled to ensure stability.
+> Full transformer-based inference is supported **locally** in controlled environments.
+> Clause detection, risk analysis, and jurisdiction logic are identical across all modes.
 
 ---
 
@@ -27,19 +40,19 @@ This project is intentionally built as a **portfolio-grade system**, not a demo 
 ## 🏗 High-Level Architecture
 
 User Upload
-    ↓
+↓
 Text Extraction (PDF / DOCX / TXT)
-    ↓
+↓
 Preprocessing & Chunking
-    ↓
+↓
 Summarization Engine
-    ↓
+↓
 Clause Extraction & Classification
-    ↓
+↓
 Risk Analysis (Explainable Rules)
-    ↓
+↓
 Jurisdiction Intelligence
-    ↓
+↓
 UI Output + Metrics
 
 ---
@@ -47,7 +60,7 @@ UI Output + Metrics
 ## 🚀 Core Capabilities
 
 * 📂 Secure ingestion of **PDF, DOCX, and TXT** legal documents
-* 🧠 Hierarchical summarization using **LegalT5** (feature-flagged)
+* 🧠 Hierarchical summarization using **LegalT5** *(feature-flagged)*
 * ⚖️ Clause extraction and classification
   *(termination, payment, non-compete, liability, etc.)*
 * 🚨 Rule-based legal risk analysis with **human-readable explanations**
@@ -103,7 +116,7 @@ LexBrief AI supports transformer-based summarization using **LegalT5**.
 
 However, **lightweight cloud platforms (e.g. Render free tier)** cannot safely load large transformer models.
 
-### Default Production Behavior
+### Default (Demo / Public) Behavior
 
 * Transformer inference is **disabled**
 * A deterministic **Dummy Summarizer** is used
@@ -120,6 +133,31 @@ This design demonstrates:
 * Feature flagging
 * Infrastructure-aware ML deployment
 * Production-safe fallback strategies
+
+---
+
+## 🧪 Demo vs Full Inference Modes
+
+LexBrief AI supports multiple runtime modes to balance **stability** and **capability**.
+
+### Demo / Public Deployment Mode
+
+Used in constrained cloud environments.
+
+* Transformer-based summarization is intentionally limited or disabled
+* Deterministic fallback summarizer is used
+* Clause extraction, risk analysis, and jurisdiction logic run fully
+* Designed to demonstrate **system architecture and reasoning**, not model throughput
+
+### Local Full-Inference Mode
+
+Intended for controlled environments with sufficient resources.
+
+* Full transformer-based summarization enabled
+* End-to-end document processing without truncation
+* Identical clause and risk logic as demo mode
+
+Runtime behavior is selected via environment configuration.
 
 ---
 
@@ -184,9 +222,7 @@ This repository is designed to be **discussed in interviews**, not just run.
 
 ## 📄 Research & Publication
 
-This system is accompanied by a technical whitepaper describing
-its safety-first architecture, evaluation philosophy, and
-deployment constraints.
+This system is accompanied by a technical whitepaper describing its safety-first architecture, evaluation philosophy, and deployment constraints.
 
 * **LexBrief AI: A Safety-First, Explainable Legal Document Intelligence System**
 * Status: Preprint (arXiv submission in progress)
@@ -198,7 +234,7 @@ deployment constraints.
 
 If you reference this system, please cite:
 
-LexBrief AI: A Safety-First, Explainable Legal Document Intelligence System  
+**LexBrief AI: A Safety-First, Explainable Legal Document Intelligence System**
 Ishaan Shanker Srivastava, January 2026
 
 ---
