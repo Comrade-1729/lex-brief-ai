@@ -1,12 +1,6 @@
-Perfect. Your README is already strong; we’ll **tighten language, remove redundancy, and make the demo disclaimer interview-safe** without bloating it.
-
-Below is a **finalized README (polished, minimal edits)** followed by **clean commit messages**.
-
----
-
 # ⚖️ LexBrief AI
 
-**Production-Aware Legal Document Intelligence System**
+## Production-Aware Legal Document Intelligence System
 
 LexBrief AI transforms long, unreadable legal documents into **actionable, explainable legal insights**.
 
