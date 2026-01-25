@@ -49,8 +49,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "documents",
-    "ui",
+    # project apps (explicit paths)
+    "lexbrief.documents",
+    "lexbrief.ui",
 ]
 
 MEDIA_URL = "/media/"
@@ -77,7 +78,7 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 # URLs / WSGI
 # --------------------------------------------------
 
-ROOT_URLCONF = "lexbrief.urls"
+ROOT_URLCONF = "lexbrief.lexbrief.urls"
 
 WSGI_APPLICATION = "lexbrief.wsgi.application"
 

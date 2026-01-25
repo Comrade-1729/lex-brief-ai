@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.shortcuts import render
 from documents.services.analyze_document import analyze
-from documents.models import Document
+from lexbrief.documents.models import Document
 from documents.ai.summarizer_factory import get_summarizer
 import os
 
