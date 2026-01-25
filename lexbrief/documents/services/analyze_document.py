@@ -9,6 +9,8 @@ from documents.jurisdictions.services.detect_jurisdiction import detect_jurisdic
 from documents.evaluation.clause_recall import evaluate_clause_recall
 from documents.config.limits import MAX_DOCUMENT_WORDS
 import time
+import os
+from django.conf import settings
 
 def analyze(
     file_path: str,

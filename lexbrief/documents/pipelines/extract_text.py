@@ -16,4 +16,4 @@ def extract_text(file_path: str) -> str:
 
     except Exception as e:
         # Never crash the pipeline
-        raise RuntimeError(f"TEXT_EXTRACTION_FAILED: {str(e)}")
+        return ""
