@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 # -------------------------
 # Python runtime settings
@@ -29,6 +29,9 @@ RUN pip install --no-cache-dir --upgrade pip \
 
 # Copy project source
 COPY . .
+
+# before migrate
+ENV DJANGO_SETTINGS_MODULE=lexbrief.settings
 
 # Prepare Django & Collect static files (safe no-op in dev)
 RUN python lexbrief/manage.py migrate --noinput

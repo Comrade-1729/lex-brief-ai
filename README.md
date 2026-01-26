@@ -65,6 +65,8 @@ UI Output + Metrics
   * ROUGE metrics
   * Latency profiling (visible in UI)
 
+`All evaluations are designed to be deterministic and reproducible, with transformer-based inference explicitly excluded from automated testing to preserve stability and interpretability.`
+
 ---
 
 ## ⏱ Performance Characteristics
@@ -187,6 +189,26 @@ LexBrief AI prioritizes **correctness, traceability, and safety**.
 * Very large documents may incur higher latency
 
 These constraints are **intentional** to preserve explainability and safety.
+
+---
+
+## 🧪 Testing
+
+LexBrief AI uses **pytest + pytest-django** instead of Django’s default test runner.
+
+Test coverage includes:
+
+* Clause extraction logic
+* Rule-based risk analysis
+* Summarizer selection (feature-flag behavior)
+* Pipeline safety (text extraction)
+* Django view availability
+
+All tests are:
+
+* Deterministic
+* CPU-only
+* CI-safe
 
 ---
 
