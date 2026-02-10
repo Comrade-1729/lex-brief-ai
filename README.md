@@ -232,7 +232,7 @@ LexBrief AI demonstrates:
 * Production-aware backend engineering
 * Responsible AI boundaries
 
-This repository is designed to be **discussed in interviews**, not just run.
+This repository is designed to demonstrate production judgment, not model spectacle.
 
 ---
 
